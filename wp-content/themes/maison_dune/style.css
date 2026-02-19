@@ -123,6 +123,25 @@ header {
       }
     }
   }
+  .login-icon {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2rem;
+    z-index: 1001;
+
+    a {
+      color: var(--light);
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
 }
 
 .home-hero {
