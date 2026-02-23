@@ -1,10 +1,12 @@
 <?php
 
 
-function maison_styles() {
+function maison_scripts() {
     wp_enqueue_style( 'my-style', get_stylesheet_uri() );
+
+    wp_enqueue_script('faq', get_template_directory_uri() . '/assets/js/faq.js', [], false, true);
 }
-add_action('wp_enqueue_scripts', 'maison_styles');
+add_action('wp_enqueue_scripts', 'maison_scripts');
 
 register_nav_menus( array(
     'menu-izquierdo' => 'Menú Cabecera Izquierda',
