@@ -8,7 +8,7 @@
             setting.</p>
         <div class="buttons-restaurant">
             <a href="#menu" class="bg">See menu</a>
-            <a href="">Book a table</a>
+            <a href="table">Book a table</a>
         </div>
     </div>
 
@@ -140,7 +140,24 @@
         </div>
     </div>
 </section>
+<section class="terrace">
+  <div class="terrace-intro">
+    <h1>Magic Terrace</h1>
+  </div>
 
+  <div class="terrace-text">
+    <span class="ornament">✦</span>
+    <p class="sub">Maison Dune · Al Fresco Dining</p>
+    <h2 class="title">Where stillness<br /><div class="hightlight">becomes luxury</div></h2>
+    <p class="terrace-body">
+      Suspended between golden light and open sky, our terrace is an invitation
+      to slow down. Inspired by the warmth of Arabian hospitality and the quiet
+      beauty of the desert at dusk — every detail, every scent, every light
+      has been composed for your pleasure.
+    </p>
+    <a href="table" class="cta">Reserve Your Table</a>
+  </div>
+</section>
 <section class="store">
     <div class="store-content">
         <div class="store-text">

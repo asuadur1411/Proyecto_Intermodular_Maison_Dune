@@ -96,3 +96,5 @@ function create_wine_post_type() {
     ));
 }
 add_action('init', 'create_wine_post_type');
+
+

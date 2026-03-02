@@ -15,6 +15,7 @@ Theme Name: Maison
   --beige-text: rgb(255, 207, 123);
   --grey: rgb(32, 32, 32);
   --red: rgb(99, 0, 0);
+  --red-light: rgb(139, 34, 34);
 }
 
 * {
@@ -1268,6 +1269,114 @@ header {
     }
   }
 }
+.terrace {
+  .terrace-intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-image: url(assets/img/terrace.jpeg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.2) 40%,
+        rgba(0, 0, 0, 0.2) 60%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 80px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--light);
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  .terrace-text {
+    background: var(--grey);
+    text-align: center;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .ornament {
+      color: var(--beige-text);
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    .sub {
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--beige-text);
+      opacity: 0.75;
+    }
+
+    .title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--light);
+
+      .hightlight {
+        font-style: italic;
+        color: var(--beige-text);
+      }
+    }
+
+    .terrace-body {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(17px, 2vw, 21px);
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--light-opacity);
+      max-width: 620px;
+      letter-spacing: 0.02em;
+    }
+
+    .cta {
+      margin-top: 12px;
+      display: inline-block;
+      padding: 13px 40px;
+      border: 1px solid rgba(255, 207, 123, 0.4);
+      color: var(--beige-text);
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 207, 123, 0.08);
+        border-color: var(--beige-text);
+      }
+    }
+  }
+}
 .store {
   .store-content {
     display: flex;
@@ -1744,13 +1853,46 @@ header {
   padding-top: 85px;
   margin-top: 3rem;
   margin-bottom: 3rem;
+
+  &::before {
+    content: "✦";
+    font-size: 12px;
+    color: var(--red);
+    opacity: 0.5;
+    letter-spacing: 0.3em;
+  }
+
   h1 {
     color: var(--red);
     font-family: "Cormorant Garamond";
     font-size: clamp(50px, 8vw, 100px);
+    font-style: italic;
     line-height: 1;
     margin: 0;
   }
+
+  .contact-title-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.4;
+
+    span {
+      display: block;
+      width: 50px;
+      height: 1px;
+      background: var(--beige-white);
+    }
+
+    i {
+      display: block;
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--beige-white);
+      transform: rotate(45deg);
+    }
+  }
+
   p {
     color: var(--grey);
     font-family: "Montserrat";
@@ -1762,7 +1904,6 @@ header {
     text-align: center;
   }
 }
-
 .contact-info {
   display: flex;
   justify-content: center;
@@ -1818,6 +1959,11 @@ header {
     .contact-form-text {
       flex: 1;
 
+      .form-success {
+        font-family: 'Montserrat';
+        font-size: 15px;
+        margin-bottom: 2rem;
+      }
       form {
         display: flex;
         flex-flow: column;
@@ -1987,112 +2133,113 @@ header {
 }
 
 .faq {
-    background: var(--grey);
-    padding: 5rem 2rem;
+  background: var(--grey);
+  padding: 5rem 2rem;
 
-    .faq-header {
-        text-align: center;
-        margin-bottom: 56px;
+  .faq-header {
+    text-align: center;
+    margin-bottom: 56px;
 
-        .faq-label {
-            display: block;
-            font-family: "Montserrat";
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--beige-text);
-            margin-bottom: 16px;
-        }
-
-        h2 {
-            font-family: "Cormorant Garamond";
-            font-size: 36px;
-            font-weight: 300;
-            color: var(--light);
-            margin-bottom: 20px;
-        }
+    .faq-label {
+      display: block;
+      font-family: "Montserrat";
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--beige-text);
+      margin-bottom: 16px;
     }
 
-    .faq-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        max-width: 860px;
-        margin: 0 auto;
+    h2 {
+      font-family: "Cormorant Garamond";
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--light);
+      margin-bottom: 20px;
+    }
+  }
+
+  .faq-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--beige);
+
+    &:last-child {
+      border-bottom: 1px solid var(--beige);
     }
 
-    .faq-item {
-        border-top: 1px solid var(--beige);
+    &.open {
+      .faq-question {
+        color: var(--beige-text);
+      }
 
-        &:last-child {
-            border-bottom: 1px solid var(--beige);
-        }
+      .faq-icon {
+        transform: rotate(45deg);
+        color: var(--beige-text);
+      }
 
-        &.open {
-            .faq-question {
-                color: var(--beige-text);
-            }
-
-            .faq-icon {
-                transform: rotate(45deg);
-                color: var(--beige-text);
-            }
-
-            .faq-answer-inner {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-            width: 100%;
-            padding: 24px 0;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-            font-family: "Montserrat";
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--light);
-            transition: color 0.3s ease;
-
-            &:hover {
-                color: var(--beige-text);
-            }
-        }
-
-        .faq-icon {
-            flex-shrink: 0;
-            font-size: 22px;
-            font-weight: 300;
-            color: var(--beige-white);
-            transition: transform 0.4s ease, color 0.3s ease;
-            line-height: 1;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-            .faq-answer-inner {
-                padding: 0 0 24px 0;
-                font-family: "Montserrat";
-                font-size: 13px;
-                font-weight: 300;
-                line-height: 1.6;
-                color: var(--light-opacity);
-            }
-        }
+      .faq-answer-inner {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      width: 100%;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: "Montserrat";
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--light);
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--beige-text);
+      }
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--beige-white);
+      transition:
+        transform 0.4s ease,
+        color 0.3s ease;
+      line-height: 1;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+      .faq-answer-inner {
+        padding: 0 0 24px 0;
+        font-family: "Montserrat";
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.6;
+        color: var(--light-opacity);
+      }
+    }
+  }
 }
-
 
 /*--------------------------------------LOGIN------------------*/
 
@@ -2214,7 +2361,9 @@ header {
           color: var(--beige-white);
           text-decoration: none;
           border-bottom: 1px solid transparent;
-          transition: color 0.3s ease, border-bottom-color 0.3s ease;
+          transition:
+            color 0.3s ease,
+            border-bottom-color 0.3s ease;
 
           &:hover {
             color: var(--red);
@@ -2245,7 +2394,6 @@ header {
     }
   }
 }
-
 
 /*--------------------------------REGISTER---------------------*/
 
@@ -2293,6 +2441,191 @@ header {
 
       &:hover {
         color: var(--beige);
+      }
+    }
+  }
+}
+
+/*----------------------------BOOK A TABLE-------------------------*/
+.book-table {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(assets/img/book-estampado.webp);
+  background-repeat: repeat;
+  background-size: 200px auto;
+  background-position: top center;
+  display: inline-block;
+  width: 100%;
+
+  .book-table-content {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem;
+    margin-top: 6rem;
+    .book-table-text {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      
+      h3 {
+        font-family: "Montserrat";
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        color: var(--beige-text);
+        opacity: 0.7;
+      }
+
+      .book-title {
+        h1 {
+          font-family: "Cormorant Garamond";
+          font-size: 70px;
+          font-weight: 300;
+          line-height: 1;
+          font-style: italic;
+          color: var(--beige-text);
+        }
+
+        .highlight {
+          color: var(--light);
+          font-style: normal;
+        }
+      }
+
+      p {
+        color: var(--light-opacity);
+        font-family: "Cormorant Garamond";
+        font-size: 19px;
+        font-weight: 300;
+        width: 50%;
+        line-height: 1.8;
+      }
+    }
+
+    .book-table-form {
+      width: 100%;
+      max-width: 680px;
+
+      form {
+        display: flex;
+        flex-flow: column;
+        gap: 1.2rem;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 207, 123, 0.15);
+        border-radius: 4px;
+        padding: 2.5rem;
+
+        .form-title {
+          font-family: "Cormorant Garamond";
+          font-size: 32px;
+          color: var(--beige-text);
+          letter-spacing: 1px;
+          margin-bottom: 0.5rem;
+          border-bottom: 1px solid rgba(255, 207, 123, 0.2);
+          padding-bottom: 1rem;
+        }
+
+        .form-row {
+          display: flex;
+          gap: 1rem;
+
+          .form-group {
+            flex: 1;
+          }
+        }
+
+        .form-group {
+          display: flex;
+          flex-flow: column;
+          gap: 0.4rem;
+
+          label {
+            font-family: "Montserrat";
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--beige-text);
+            opacity: 0.8;
+          }
+
+          input,
+          select,
+          textarea {
+            background: rgba(56, 50, 39, 0.3);
+            border: 1px solid rgba(119, 107, 85, 0.4);
+            border-radius: 2px;
+            padding: 0.75rem 1rem;
+            color: var(--light);
+            font-family: "Montserrat";
+            font-size: 13px;
+            outline: none;
+            transition:
+              border-color 0.2s ease,
+              background 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+
+            &::placeholder {
+              color: rgba(255, 255, 255, 0.3);
+            }
+
+            &:focus {
+              border-color: rgba(255, 207, 123, 0.6);
+              background: rgba(56, 50, 39, 0.5);
+            }
+
+            option {
+              background: var(--grey);
+              color: var(--light);
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 80px;
+          }
+        }
+
+        .form-divider {
+          height: 1px;
+          background: rgba(255, 207, 123, 0.15);
+          margin: 0.3rem 0;
+        }
+
+        .form-submit {
+          background: var(--red);
+          color: var(--beige-text);
+          border: 1px solid rgba(255, 207, 123, 0.3);
+          border-radius: 2px;
+          padding: 1rem 2rem;
+          font-family: "Montserrat";
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          cursor: pointer;
+          transition:
+            background 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+          margin-top: 0.5rem;
+
+          &:hover {
+            background: rgba(99, 0, 0, 0.7);
+            color: var(--light);
+            border-color: rgba(255, 207, 123, 0.6);
+          }
+
+          &:active {
+            background: rgba(99, 0, 0, 0.9);
+          }
+        }
       }
     }
   }
