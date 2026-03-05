@@ -1960,7 +1960,7 @@ header {
       flex: 1;
 
       .form-success {
-        font-family: 'Montserrat';
+        font-family: "Montserrat";
         font-size: 15px;
         margin-bottom: 2rem;
       }
@@ -2067,59 +2067,302 @@ header {
           }
         }
       }
-    }
 
-    .contact-form-image {
-      flex: 1;
-      display: flex;
-      flex-flow: column;
-      gap: 1rem;
-
-      .image-up {
+      .contact-form-image {
         flex: 1;
-        min-height: 250px;
-        background-image: url(assets/img/contact-form.jpg);
-        background-size: cover;
-        background-position: center;
-        border-radius: 50% 50% 0 0 / 40% 40% 0 0;
-      }
-
-      .image-down {
-        flex: 1;
-        min-height: 250px;
         display: flex;
         flex-flow: column;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 2rem;
-        background-color: var(--beige-text);
+        gap: 1rem;
 
-        .image-down-info {
+        .image-up {
+          flex: 1;
+          min-height: 250px;
+          background-image: url(assets/img/contact-form.jpg);
+          background-size: cover;
+          background-position: center;
+          border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+        }
+
+        .image-down {
+          flex: 1;
+          min-height: 250px;
           display: flex;
           flex-flow: column;
-          gap: 0.4rem;
+          justify-content: center;
+          gap: 1.5rem;
+          padding: 2rem;
+          background-color: var(--beige-text);
 
-          h3 {
-            font-family: "Cormorant Garamond";
-            font-size: 22px;
-            font-weight: 500;
-            color: var(--red);
+          .image-down-info {
+            display: flex;
+            flex-flow: column;
+            gap: 0.4rem;
+
+            h3 {
+              font-family: "Cormorant Garamond";
+              font-size: 22px;
+              font-weight: 500;
+              color: var(--red);
+            }
+
+            p {
+              font-family: "Montserrat";
+              font-size: 13px;
+              line-height: 1.6;
+              color: var(--grey);
+            }
+
+            a {
+              font-family: "Montserrat";
+              font-size: 13px;
+              color: var(--grey);
+              text-decoration: none;
+              border-bottom: 1px solid var(--grey);
+              align-self: flex-start;
+
+              &:hover {
+                color: var(--red);
+                border-bottom-color: var(--red);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .faq {
+    background: var(--grey);
+    padding: 5rem 2rem;
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 56px;
+
+      .faq-label {
+        display: block;
+        font-family: "Montserrat";
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--beige-text);
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        font-family: "Cormorant Garamond";
+        font-size: 36px;
+        font-weight: 300;
+        color: var(--light);
+        margin-bottom: 20px;
+      }
+    }
+
+    .faq-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--beige);
+
+      &:last-child {
+        border-bottom: 1px solid var(--beige);
+      }
+
+      &.open {
+        .faq-question {
+          color: var(--beige-text);
+        }
+
+        .faq-icon {
+          transform: rotate(45deg);
+          color: var(--beige-text);
+        }
+
+        .faq-answer-inner {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+        padding: 24px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-family: "Montserrat";
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--light);
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--beige-text);
+        }
+      }
+
+      .faq-icon {
+        flex-shrink: 0;
+        font-size: 22px;
+        font-weight: 300;
+        color: var(--beige-white);
+        transition:
+          transform 0.4s ease,
+          color 0.3s ease;
+        line-height: 1;
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .faq-answer-inner {
+          padding: 0 0 24px 0;
+          font-family: "Montserrat";
+          font-size: 13px;
+          font-weight: 300;
+          line-height: 1.6;
+          color: var(--light-opacity);
+        }
+      }
+    }
+  }
+
+  /*--------------------------------------LOGIN------------------*/
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 5rem 2rem;
+    background-color: var(--light);
+
+    .login-container {
+      width: 100%;
+      max-width: 480px;
+
+      .login-header {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 3rem;
+        text-align: center;
+
+        .login-label {
+          font-family: "Montserrat";
+          font-size: 11px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: var(--beige-white);
+        }
+
+        h1 {
+          font-family: "Cormorant Garamond";
+          font-size: 52px;
+          font-weight: 300;
+          color: var(--dark);
+          margin: 0;
+          line-height: 1;
+        }
+
+        .line {
+          width: 48px;
+          height: 1px;
+          background-color: var(--red);
+          margin-top: 0.4rem;
+        }
+      }
+
+      .login-form {
+        display: flex;
+        flex-flow: column;
+        gap: 1.5rem;
+
+        .form-group {
+          display: flex;
+          flex-flow: column;
+          gap: 0.5rem;
+
+          label {
+            font-family: "Montserrat";
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--beige);
           }
 
-          p {
+          input {
             font-family: "Montserrat";
-            font-size: 13px;
-            line-height: 1.6;
-            color: var(--grey);
+            font-size: 14px;
+            color: var(--dark);
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid var(--beige);
+            padding: 0.6rem 0;
+            outline: none;
+            transition: border-color 0.3s ease;
+
+            &::placeholder {
+              color: #bbb;
+            }
+
+            &:focus {
+              border-bottom-color: var(--red);
+            }
+          }
+        }
+
+        .login-options {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+
+            input[type="checkbox"] {
+              width: 15px;
+              height: 15px;
+              min-width: 15px;
+              accent-color: var(--red);
+              cursor: pointer;
+            }
+
+            label {
+              font-family: "Montserrat";
+              font-size: 12px;
+              color: var(--beige);
+              cursor: pointer;
+            }
           }
 
-          a {
+          .forgot-link {
             font-family: "Montserrat";
-            font-size: 13px;
-            color: var(--grey);
+            font-size: 12px;
+            color: var(--beige-white);
             text-decoration: none;
-            border-bottom: 1px solid var(--grey);
-            align-self: flex-start;
+            border-bottom: 1px solid transparent;
+            transition:
+              color 0.3s ease,
+              border-bottom-color 0.3s ease;
 
             &:hover {
               color: var(--red);
@@ -2127,503 +2370,260 @@ header {
             }
           }
         }
-      }
-    }
-  }
-}
 
-.faq {
-  background: var(--grey);
-  padding: 5rem 2rem;
-
-  .faq-header {
-    text-align: center;
-    margin-bottom: 56px;
-
-    .faq-label {
-      display: block;
-      font-family: "Montserrat";
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--beige-text);
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      font-family: "Cormorant Garamond";
-      font-size: 36px;
-      font-weight: 300;
-      color: var(--light);
-      margin-bottom: 20px;
-    }
-  }
-
-  .faq-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-
-  .faq-item {
-    border-top: 1px solid var(--beige);
-
-    &:last-child {
-      border-bottom: 1px solid var(--beige);
-    }
-
-    &.open {
-      .faq-question {
-        color: var(--beige-text);
-      }
-
-      .faq-icon {
-        transform: rotate(45deg);
-        color: var(--beige-text);
-      }
-
-      .faq-answer-inner {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      width: 100%;
-      padding: 24px 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      font-family: "Montserrat";
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--light);
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: var(--beige-text);
-      }
-    }
-
-    .faq-icon {
-      flex-shrink: 0;
-      font-size: 22px;
-      font-weight: 300;
-      color: var(--beige-white);
-      transition:
-        transform 0.4s ease,
-        color 0.3s ease;
-      line-height: 1;
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-      .faq-answer-inner {
-        padding: 0 0 24px 0;
-        font-family: "Montserrat";
-        font-size: 13px;
-        font-weight: 300;
-        line-height: 1.6;
-        color: var(--light-opacity);
-      }
-    }
-  }
-}
-
-/*--------------------------------------LOGIN------------------*/
-
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 5rem 2rem;
-  background-color: var(--light);
-
-  .login-container {
-    width: 100%;
-    max-width: 480px;
-
-    .login-header {
-      display: flex;
-      flex-flow: column;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 3rem;
-      text-align: center;
-
-      .login-label {
-        font-family: "Montserrat";
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--beige-white);
-      }
-
-      h1 {
-        font-family: "Cormorant Garamond";
-        font-size: 52px;
-        font-weight: 300;
-        color: var(--dark);
-        margin: 0;
-        line-height: 1;
-      }
-
-      .line {
-        width: 48px;
-        height: 1px;
-        background-color: var(--red);
-        margin-top: 0.4rem;
-      }
-    }
-
-    .login-form {
-      display: flex;
-      flex-flow: column;
-      gap: 1.5rem;
-
-      .form-group {
-        display: flex;
-        flex-flow: column;
-        gap: 0.5rem;
-
-        label {
+        button[type="submit"] {
+          align-self: stretch;
+          margin-top: 0.5rem;
+          padding: 0.85rem 2.5rem;
+          background-color: var(--red);
+          color: var(--light);
           font-family: "Montserrat";
           font-size: 11px;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 2px;
-          color: var(--beige);
-        }
-
-        input {
-          font-family: "Montserrat";
-          font-size: 14px;
-          color: var(--dark);
-          background-color: transparent;
           border: none;
-          border-bottom: 1px solid var(--beige);
-          padding: 0.6rem 0;
-          outline: none;
-          transition: border-color 0.3s ease;
-
-          &::placeholder {
-            color: #bbb;
-          }
-
-          &:focus {
-            border-bottom-color: var(--red);
-          }
-        }
-      }
-
-      .login-options {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .form-checkbox {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-
-          input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
-            min-width: 15px;
-            accent-color: var(--red);
-            cursor: pointer;
-          }
-
-          label {
-            font-family: "Montserrat";
-            font-size: 12px;
-            color: var(--beige);
-            cursor: pointer;
-          }
-        }
-
-        .forgot-link {
-          font-family: "Montserrat";
-          font-size: 12px;
-          color: var(--beige-white);
-          text-decoration: none;
-          border-bottom: 1px solid transparent;
-          transition:
-            color 0.3s ease,
-            border-bottom-color 0.3s ease;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
 
           &:hover {
-            color: var(--red);
-            border-bottom-color: var(--red);
+            background-color: var(--beige);
           }
         }
       }
-
-      button[type="submit"] {
-        align-self: stretch;
-        margin-top: 0.5rem;
-        padding: 0.85rem 2.5rem;
-        background-color: var(--red);
-        color: var(--light);
-        font-family: "Montserrat";
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: var(--beige);
-        }
-      }
     }
   }
-}
 
-/*--------------------------------REGISTER---------------------*/
+  /*--------------------------------REGISTER---------------------*/
 
-.login-redirect {
-  font-family: "Montserrat";
-  font-size: 12px;
-  color: var(--beige-white);
-  text-align: center;
-  margin: 0;
-
-  a {
-    color: var(--red);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-
-    &:hover {
-      border-bottom-color: var(--red);
-    }
-  }
-}
-
-.form-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-
-  input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    min-width: 15px;
-    accent-color: var(--red);
-    cursor: pointer;
-  }
-
-  label {
+  .login-redirect {
     font-family: "Montserrat";
     font-size: 12px;
-    color: var(--beige);
-    cursor: pointer;
+    color: var(--beige-white);
+    text-align: center;
+    margin: 0;
 
     a {
       color: var(--red);
-      text-decoration: underline;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 0.3s ease;
 
       &:hover {
-        color: var(--beige);
+        border-bottom-color: var(--red);
       }
     }
   }
-}
 
-/*----------------------------BOOK A TABLE-------------------------*/
-.book-table {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url(assets/img/book-estampado.webp);
-  background-repeat: repeat;
-  background-size: 200px auto;
-  background-position: top center;
-  display: inline-block;
-  width: 100%;
-
-  .book-table-content {
+  .form-checkbox {
     display: flex;
-    flex-flow: column;
     align-items: center;
-    gap: 2rem;
-    padding: 4rem;
-    margin-top: 6rem;
-    .book-table-text {
+    gap: 0.6rem;
+
+    input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      min-width: 15px;
+      accent-color: var(--red);
+      cursor: pointer;
+    }
+
+    label {
+      font-family: "Montserrat";
+      font-size: 12px;
+      color: var(--beige);
+      cursor: pointer;
+
+      a {
+        color: var(--red);
+        text-decoration: underline;
+
+        &:hover {
+          color: var(--beige);
+        }
+      }
+    }
+  }
+
+  /*----------------------------BOOK A TABLE-------------------------*/
+  .book-table {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+      url(assets/img/book-estampado.webp);
+    background-repeat: repeat;
+    background-size: 200px auto;
+    background-position: top center;
+    display: inline-block;
+    width: 100%;
+
+    .book-table-content {
       display: flex;
       flex-flow: column;
       align-items: center;
-      text-align: center;
-      gap: 1rem;
-      
-      h3 {
-        font-family: "Montserrat";
-        font-size: 10px;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.35em;
-        color: var(--beige-text);
-        opacity: 0.7;
-      }
-
-      .book-title {
-        h1 {
-          font-family: "Cormorant Garamond";
-          font-size: 70px;
-          font-weight: 300;
-          line-height: 1;
-          font-style: italic;
-          color: var(--beige-text);
-        }
-
-        .highlight {
-          color: var(--light);
-          font-style: normal;
-        }
-      }
-
-      p {
-        color: var(--light-opacity);
-        font-family: "Cormorant Garamond";
-        font-size: 19px;
-        font-weight: 300;
-        width: 50%;
-        line-height: 1.8;
-      }
-    }
-
-    .book-table-form {
-      width: 100%;
-      max-width: 680px;
-
-      form {
+      gap: 2rem;
+      padding: 4rem;
+      margin-top: 6rem;
+      .book-table-text {
         display: flex;
         flex-flow: column;
-        gap: 1.2rem;
-        background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 207, 123, 0.15);
-        border-radius: 4px;
-        padding: 2.5rem;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
 
-        .form-title {
-          font-family: "Cormorant Garamond";
-          font-size: 32px;
+        h3 {
+          font-family: "Montserrat";
+          font-size: 10px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.35em;
           color: var(--beige-text);
-          letter-spacing: 1px;
-          margin-bottom: 0.5rem;
-          border-bottom: 1px solid rgba(255, 207, 123, 0.2);
-          padding-bottom: 1rem;
+          opacity: 0.7;
         }
 
-        .form-row {
-          display: flex;
-          gap: 1rem;
+        .book-title {
+          h1 {
+            font-family: "Cormorant Garamond";
+            font-size: 70px;
+            font-weight: 300;
+            line-height: 1;
+            font-style: italic;
+            color: var(--beige-text);
+          }
 
-          .form-group {
-            flex: 1;
+          .highlight {
+            color: var(--light);
+            font-style: normal;
           }
         }
 
-        .form-group {
+        p {
+          color: var(--light-opacity);
+          font-family: "Cormorant Garamond";
+          font-size: 19px;
+          font-weight: 300;
+          width: 50%;
+          line-height: 1.8;
+        }
+      }
+
+      .book-table-form {
+        width: 100%;
+        max-width: 680px;
+
+        form {
           display: flex;
           flex-flow: column;
-          gap: 0.4rem;
+          gap: 1.2rem;
+          background: rgba(0, 0, 0, 0.55);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 207, 123, 0.15);
+          border-radius: 4px;
+          padding: 2.5rem;
 
-          label {
-            font-family: "Montserrat";
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+          .form-title {
+            font-family: "Cormorant Garamond";
+            font-size: 32px;
             color: var(--beige-text);
-            opacity: 0.8;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 207, 123, 0.2);
+            padding-bottom: 1rem;
           }
 
-          input,
-          select,
-          textarea {
-            background: rgba(56, 50, 39, 0.3);
-            border: 1px solid rgba(119, 107, 85, 0.4);
-            border-radius: 2px;
-            padding: 0.75rem 1rem;
-            color: var(--light);
-            font-family: "Montserrat";
-            font-size: 13px;
-            outline: none;
-            transition:
-              border-color 0.2s ease,
-              background 0.2s ease;
-            width: 100%;
-            box-sizing: border-box;
+          .form-row {
+            display: flex;
+            gap: 1rem;
 
-            &::placeholder {
-              color: rgba(255, 255, 255, 0.3);
+            .form-group {
+              flex: 1;
+            }
+          }
+
+          .form-group {
+            display: flex;
+            flex-flow: column;
+            gap: 0.4rem;
+
+            label {
+              font-family: "Montserrat";
+              font-size: 10px;
+              text-transform: uppercase;
+              letter-spacing: 2px;
+              color: var(--beige-text);
+              opacity: 0.8;
             }
 
-            &:focus {
-              border-color: rgba(255, 207, 123, 0.6);
-              background: rgba(56, 50, 39, 0.5);
-            }
-
-            option {
-              background: var(--grey);
+            input,
+            select,
+            textarea {
+              background: rgba(56, 50, 39, 0.3);
+              border: 1px solid rgba(119, 107, 85, 0.4);
+              border-radius: 2px;
+              padding: 0.75rem 1rem;
               color: var(--light);
+              font-family: "Montserrat";
+              font-size: 13px;
+              outline: none;
+              transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+              width: 100%;
+              box-sizing: border-box;
+
+              &::placeholder {
+                color: rgba(255, 255, 255, 0.3);
+              }
+
+              &:focus {
+                border-color: rgba(255, 207, 123, 0.6);
+                background: rgba(56, 50, 39, 0.5);
+              }
+
+              option {
+                background: var(--grey);
+                color: var(--light);
+              }
+            }
+
+            textarea {
+              resize: vertical;
+              min-height: 80px;
             }
           }
 
-          textarea {
-            resize: vertical;
-            min-height: 80px;
-          }
-        }
-
-        .form-divider {
-          height: 1px;
-          background: rgba(255, 207, 123, 0.15);
-          margin: 0.3rem 0;
-        }
-
-        .form-submit {
-          background: var(--red);
-          color: var(--beige-text);
-          border: 1px solid rgba(255, 207, 123, 0.3);
-          border-radius: 2px;
-          padding: 1rem 2rem;
-          font-family: "Montserrat";
-          font-size: 11px;
-          text-transform: uppercase;
-          letter-spacing: 3px;
-          cursor: pointer;
-          transition:
-            background 0.2s ease,
-            color 0.2s ease,
-            border-color 0.2s ease;
-          margin-top: 0.5rem;
-
-          &:hover {
-            background: rgba(99, 0, 0, 0.7);
-            color: var(--light);
-            border-color: rgba(255, 207, 123, 0.6);
+          .form-divider {
+            height: 1px;
+            background: rgba(255, 207, 123, 0.15);
+            margin: 0.3rem 0;
           }
 
-          &:active {
-            background: rgba(99, 0, 0, 0.9);
+          .form-submit {
+            background: var(--red);
+            color: var(--beige-text);
+            border: 1px solid rgba(255, 207, 123, 0.3);
+            border-radius: 2px;
+            padding: 1rem 2rem;
+            font-family: "Montserrat";
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition:
+              background 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
+            margin-top: 0.5rem;
+
+            &:hover {
+              background: rgba(99, 0, 0, 0.7);
+              color: var(--light);
+              border-color: rgba(255, 207, 123, 0.6);
+            }
+
+            &:active {
+              background: rgba(99, 0, 0, 0.9);
+            }
           }
         }
       }
