@@ -10,21 +10,21 @@ use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
+
     protected $table = 'users';
-    protected $primaryKey = 'email';
-    protected $keyType = 'string';
-    public $incrementing = false;
+
     protected $fillable = [
-        'email',
         'name',
+        'email',
         'password',
     ];
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    protected function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
 }
