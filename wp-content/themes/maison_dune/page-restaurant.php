@@ -408,3 +408,5 @@
         <div class="private-dining-image"></div>
     </div>
 </section>
+
+<?php get_footer(); ?> 

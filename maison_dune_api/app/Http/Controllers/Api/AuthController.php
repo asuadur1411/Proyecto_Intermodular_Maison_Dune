@@ -13,8 +13,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
 
@@ -23,40 +23,55 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => $request->password,
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $user->sendEmailVerificationNotification();
 
         return response()->json([
-            'status' => 'success',
-            'access_token' => $token,
-            'token_type' => 'Bearer',
+            'status'  => 'success',
+            'message' => 'Cuenta creada. Revisa tu correo para verificar tu cuenta.',
         ], 201);
     }
 
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('auth_token')->plainTextToken;
-
+        if (!Auth::attempt($credentials)) {
             return response()->json([
-                'message' => '¡Login exitoso!',
-                'access_token' => $token,
-                'user' => $user
-            ], 200);
+                'message' => 'Credenciales incorrectas. Revisa tu email o contraseña.'
+            ], 401);
         }
 
+        $user = Auth::user();
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+            return response()->json([
+                'status'  => 'unverified',
+                'message' => 'Revisa tu correo y haz clic en el enlace para verificar tu cuenta.',
+            ], 403);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return response()->json([
-            'message' => 'Credenciales incorrectas. Revisa tu email o contraseña.'
-        ], 401);
+            'message'      => '¡Login exitoso!',
+            'access_token' => $token,
+            'user'         => $user,
+        ], 200);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out successfully.']);
     }
 }

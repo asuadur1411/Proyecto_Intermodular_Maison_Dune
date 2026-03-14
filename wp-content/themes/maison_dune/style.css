@@ -124,6 +124,7 @@ header {
       }
     }
   }
+
   .login-icon {
     position: fixed;
     top: 50%;
@@ -140,6 +141,61 @@ header {
 
       &:hover {
         opacity: 0.5;
+      }
+    }
+
+    #user-menu-wrapper {
+      position: relative;
+
+      #user-menu-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: white;
+        font-family: inherit;
+
+        #user-welcome {
+          font-size: 13px;
+          letter-spacing: 0.05em;
+        }
+
+        .arrow {
+          font-size: 11px;
+        }
+      }
+
+      .user-dropdown {
+        display: none;
+        position: absolute;
+        background: #1a1a1a;
+        top: 100%;
+        right: 0;
+        min-width: 160px;
+        list-style: none;
+        padding: 8px 0;
+        margin: 0;
+        z-index: 999;
+
+        &.open {
+          display: block;
+        }
+
+        li a {
+          display: block;
+          padding: 10px 16px;
+          color: white;
+          text-decoration: none;
+          font-size: 13px;
+          letter-spacing: 0.05em;
+
+          &:hover {
+            background: #2a2a2a;
+          }
+        }
       }
     }
   }
@@ -1960,7 +2016,7 @@ header {
       flex: 1;
 
       .form-success {
-        font-family: 'Montserrat';
+        font-family: "Montserrat";
         font-size: 15px;
         margin-bottom: 2rem;
       }
@@ -2470,7 +2526,7 @@ header {
       align-items: center;
       text-align: center;
       gap: 1rem;
-      
+
       h3 {
         font-family: "Montserrat";
         font-size: 10px;

@@ -4,8 +4,8 @@
 function maison_scripts()
 {
     wp_enqueue_style('my-style', get_stylesheet_uri());
-
     wp_enqueue_script('faq', get_template_directory_uri() . '/assets/js/faq.js', [], false, true);
+    wp_enqueue_script('auth-bridge', get_template_directory_uri() . '/assets/js/auth-bridge.js', [], false, true); // ← añadir esto
     wp_enqueue_style('maison-login-style', get_template_directory_uri() . '/style.css');
 }
 add_action('wp_enqueue_scripts', 'maison_scripts');
@@ -104,21 +104,6 @@ function create_wine_post_type()
 }
 add_action('init', 'create_wine_post_type');
 
-function maison_dune_cargar_puente_laravel()
-{
-    wp_enqueue_script(
-        'auth-bridge',
-        get_template_directory_uri() . '/assets/js/auth-bridge.js',
-        array(),
-        '1.0',
-        true
-    );
-
-    wp_localize_script('auth-bridge', 'maisonConfig', array(
-        'apiUrl' => 'http://maison.test/maison_dune_api/public/api',
-    ));
-}
-add_action('wp_enqueue_scripts', 'maison_dune_cargar_puente_laravel');
 
 
 
