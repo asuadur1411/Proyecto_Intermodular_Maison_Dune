@@ -13,9 +13,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
+            'name'     => 'required|string|max:255|unique:users|regex:/^\S+$/',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+        ], [
+            'name.regex'  => 'The username cannot contain spaces.',
+            'name.unique' => 'This username is already taken.',
         ]);
 
         if ($validator->fails()) {
@@ -38,36 +41,43 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
+            'name'     => 'required|string',
             'email'    => 'required|email',
             'password' => 'required',
         ]);
 
-        if (!Auth::attempt($credentials)) {
+        $user = User::where('email', $request->email)->first(); // ← $user se define aquí primero
+
+        if (!$user || $user->name !== $request->name) {
             return response()->json([
-                'message' => 'Credenciales incorrectas. Revisa tu email o contraseña.'
+                'message' => 'The username or email does not match our records.'
             ], 401);
         }
 
-        $user = Auth::user();
+        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return response()->json([
+                'message' => 'Incorrect password.'
+            ], 401);
+        }
 
         if (!$user->hasVerifiedEmail()) {
             $user->sendEmailVerificationNotification();
             return response()->json([
                 'status'  => 'unverified',
-                'message' => 'Revisa tu correo y haz clic en el enlace para verificar tu cuenta.',
+                'message' => 'Please check your email and click the verification link.',
             ], 403);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message'      => '¡Login exitoso!',
+            'message'      => 'Login successful!',
             'access_token' => $token,
             'user'         => $user,
         ], 200);
     }
-
+    
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
