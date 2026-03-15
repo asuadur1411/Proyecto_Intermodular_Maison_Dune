@@ -21,8 +21,7 @@
             <?php if (isset($_GET['sent']) && $_GET['sent'] == 1) : ?>
             <p class="form-success">Thank you for book. Flavours are now awaiting.</p>
             <?php endif; ?>
-            <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST">
-                <input type="hidden" name="action" value="maison_reservation">
+            <form id="reservation-form">
                 <p class="form-title">Reserve a Table</p>
 
                 <div class="form-row">

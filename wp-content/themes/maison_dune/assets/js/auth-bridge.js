@@ -35,16 +35,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ── PROTEGER FORMULARIOS ──────────────────────────────────────────────────
-  const protectedForms = ["book-table-form"];
+  const protectedForms = ["reservation-form"];
   const token    = localStorage.getItem("maison_token");
   const userName = localStorage.getItem("maison_user");
 
-protectedForms.forEach(function (formId) {
+protectedForms.forEach((formId) => {
   const form = document.getElementById(formId);
   if (form && !token) {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit",(e) => {
       e.preventDefault();
-      showModal("Please, log in or register for any request.", "success", function () {
+      showModal("Please, log in or register for any request.", "info",() => {
         window.location.href = "/login";
       });
     });
@@ -207,4 +207,55 @@ protectedForms.forEach(function (formId) {
     });
   }
 
+
+// ── RESERVAS ──────────────────────────────────────────────────────────────
+const reservationForm = document.getElementById("reservation-form");
+  if (reservationForm) {
+    reservationForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const payload = {
+        first_name: document.getElementById("first-name").value,
+        last_name:  document.getElementById("last-name").value,
+        email:      document.getElementById("email").value,
+        phone:      document.getElementById("phone").value,
+        date:       document.getElementById("date").value,
+        time:       document.getElementById("time").value,
+        guests:     document.getElementById("guests").value,
+        section:    document.getElementById("section").value,
+        notes:      document.getElementById("notes").value,
+      };
+
+      try {
+        const response = await fetch(
+          "http://maison.test/maison_dune_api/public/index.php/api/reservations",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Bearer " + token,  // ← manda el token del usuario
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showModal("Your reservation has been submitted. We look forward to welcoming you.", "success");
+          reservationForm.reset();
+        } else {
+          const errorMsg = data.errors
+            ? Object.values(data.errors).flat().join("<br>")
+            : data.message;
+          showModal(errorMsg || "Something went wrong. Please try again.", "error");
+        }
+
+      } catch (err) {
+        console.error("Error:", err);
+        showModal("Could not connect to the server. Please try again later.", "error");
+      }
+    });
+  }
 });

@@ -7,6 +7,7 @@
  */
 
 define('MDC_API_URL', 'http://maison.test/maison_dune_api/public/api');
+define('MDR_API_NAME', 'AdminMaison');
 define('MDC_API_EMAIL', 'proyectomaison20@gmail.com');
 define('MDC_API_PASSWORD', 'admin123');
 
@@ -20,6 +21,7 @@ function mdc_get_token() {
         'body'     => json_encode([
             'email'    => MDC_API_EMAIL,
             'password' => MDC_API_PASSWORD,
+            'name'     => MDR_API_NAME,
         ]),
     ]);
 
