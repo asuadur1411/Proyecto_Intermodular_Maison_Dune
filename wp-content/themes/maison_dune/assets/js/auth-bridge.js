@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.addEventListener("click", (e) => { if (e.target === modal) handleClose(); });
   }
 
-
   function closeModal(modal) {
     modal.classList.remove("visible");
     setTimeout(() => modal.remove(), 300);
@@ -39,17 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const token    = localStorage.getItem("maison_token");
   const userName = localStorage.getItem("maison_user");
 
-protectedForms.forEach((formId) => {
-  const form = document.getElementById(formId);
-  if (form && !token) {
-    form.addEventListener("submit",(e) => {
-      e.preventDefault();
-      showModal("Please, log in or register for any request.", "info",() => {
-        window.location.href = "/login";
+  protectedForms.forEach((formId) => {
+    const form = document.getElementById(formId);
+    if (form && !token) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showModal("Please, log in or register for any request.", "info", () => {
+          window.location.href = "/login";
+        });
       });
-    });
-  }
-});
+    }
+  });
 
   // ── MENÚ DE USUARIO ───────────────────────────────────────────────────────
   const loginLink   = document.getElementById("login-link");
@@ -89,7 +88,7 @@ protectedForms.forEach((formId) => {
         localStorage.removeItem("maison_token");
         localStorage.removeItem("maison_user");
         showModal("You have been logged out successfully.", "success", () => {
-          window.location.href = "/" 
+          window.location.href = "/";
         });
       });
     }
@@ -131,9 +130,8 @@ protectedForms.forEach((formId) => {
           localStorage.setItem("maison_token", data.access_token);
           localStorage.setItem("maison_user", data.user.name);
           showModal("You are logged in.", "success", () => {
-          window.location.href = "/" 
-        })
-        
+            window.location.href = "/";
+          });
         } else if (data.status === "unverified") {
           showModal("Please check your email and click the verification link to activate your account.", "error");
         } else {
@@ -207,9 +205,104 @@ protectedForms.forEach((formId) => {
     });
   }
 
+  // ── OLVIDÉ MI CONTRASEÑA ──────────────────────────────────────────────────
+  const forgotForm = document.getElementById("forgot-password-form");
+  if (forgotForm) {
+    forgotForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-// ── RESERVAS ──────────────────────────────────────────────────────────────
-const reservationForm = document.getElementById("reservation-form");
+      const payload = {
+        email: document.getElementById("email").value,
+      };
+
+      try {
+        const response = await fetch(
+          "http://maison.test/maison_dune_api/public/index.php/api/forgot-password",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showModal("We have sent a password reset link to your email.", "success");
+        } else {
+          showModal(data.message || "We could not find an account with that email.", "error");
+        }
+
+      } catch (err) {
+        console.error("Error:", err);
+        showModal("Could not connect to the server. Please try again later.", "error");
+      }
+    });
+  }
+
+  // ── RESETEAR CONTRASEÑA ───────────────────────────────────────────────────
+  const resetForm = document.getElementById("reset-password-form");
+  if (resetForm) {
+
+    // Coger token y email de la URL — vienen del enlace del correo
+    const params = new URLSearchParams(window.location.search);
+    const resetToken = params.get("token");
+    const resetEmail = params.get("email");
+
+    if (!resetToken || !resetEmail) {
+      showModal("This reset link is invalid or has expired.", "error", () => {
+        window.location.href = "/forgot-password";
+      });
+      return;
+    }
+
+    resetForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const password = document.getElementById("password").value;
+      const confirm  = document.getElementById("password_confirm").value;
+
+      if (password !== confirm) {
+        showModal("Passwords do not match.", "error");
+        return;
+      }
+
+      const payload = {
+        token:                 resetToken,
+        email:                 resetEmail,
+        password:              password,
+        password_confirmation: confirm,
+      };
+
+      try {
+        const response = await fetch(
+          "http://maison.test/maison_dune_api/public/index.php/api/reset-password",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showModal("Password reset successfully. You can now sign in.", "success", () => {
+            window.location.href = "/login";
+          });
+        } else {
+          showModal(data.message || "This reset link is invalid or has expired.", "error");
+        }
+
+      } catch (err) {
+        console.error("Error:", err);
+        showModal("Could not connect to the server. Please try again later.", "error");
+      }
+    });
+  }
+
+  // ── RESERVAS ──────────────────────────────────────────────────────────────
+  const reservationForm = document.getElementById("reservation-form");
   if (reservationForm) {
     reservationForm.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -234,7 +327,7 @@ const reservationForm = document.getElementById("reservation-form");
             headers: {
               "Content-Type": "application/json",
               "Accept": "application/json",
-              "Authorization": "Bearer " + token,  // ← manda el token del usuario
+              "Authorization": "Bearer " + token,
             },
             body: JSON.stringify(payload),
           }
@@ -258,4 +351,5 @@ const reservationForm = document.getElementById("reservation-form");
       }
     });
   }
+
 });

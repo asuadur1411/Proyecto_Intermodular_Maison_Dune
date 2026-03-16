@@ -31,7 +31,7 @@
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Remember me</label>
                 </div>
-                <a href="#" class="forgot-link">Forgot password?</a>
+                <a href="<?php echo get_permalink(get_page_by_path('forgot-password')); ?>" class="forgot-link">Forgot password?</a>
             </div>
 
             <button type="submit">Sign In</button>

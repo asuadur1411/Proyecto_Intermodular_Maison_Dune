@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -35,7 +39,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Cuenta creada. Revisa tu correo para verificar tu cuenta.',
+            'message' => 'Account created. Please check your email to verify your account.',
         ], 201);
     }
 
@@ -47,11 +51,11 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first(); // ← $user se define aquí primero
+        $user = User::where('email', $request->email)->first();
 
         if (!$user || $user->name !== $request->name) {
             return response()->json([
-                'message' => 'The username or email does not match our records.'
+                'message' => 'Username not found. Please check your username and try again.'
             ], 401);
         }
 
@@ -65,7 +69,7 @@ class AuthController extends Controller
             $user->sendEmailVerificationNotification();
             return response()->json([
                 'status'  => 'unverified',
-                'message' => 'Please check your email and click the verification link.',
+                'message' => 'Please check your email and click the verification link to activate your account.',
             ], 403);
         }
 
@@ -77,11 +81,59 @@ class AuthController extends Controller
             'user'         => $user,
         ], 200);
     }
-    
+
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Logged out successfully.']);
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink($request->only('email'));
+
+        if ($status === Password::RESET_LINK_SENT) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Password reset link sent to your email.',
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'We could not find an account with that email address.',
+        ], 404);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'token'    => 'required',
+            'email'    => 'required|email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill(['password' => Hash::make($password)])
+                     ->setRememberToken(Str::random(60));
+                $user->save();
+                event(new PasswordReset($user));
+            }
+        );
+
+        if ($status === Password::PASSWORD_RESET) {
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Password reset successfully. You can now sign in.',
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'This reset link is invalid or has expired.',
+        ], 400);
     }
 }
