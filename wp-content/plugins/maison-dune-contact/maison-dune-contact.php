@@ -11,7 +11,6 @@ define('MDR_API_NAME', 'AdminMaison');
 define('MDC_API_EMAIL', 'proyectomaison20@gmail.com');
 define('MDC_API_PASSWORD', 'admin123');
 
-// ── Obtener token de Laravel ──────────────────────────────────────────────────
 function mdc_get_token() {
     $token = get_transient('mdc_api_token');
 
@@ -45,7 +44,6 @@ function mdc_get_token() {
     return null;
 }
 
-// ── Procesar formulario → Laravel ─────────────────────────────────────────────
 add_action('admin_post_maison_contact', 'mdc_save_message');
 add_action('admin_post_nopriv_maison_contact', 'mdc_save_message');
 
@@ -80,7 +78,6 @@ function mdc_save_message() {
     exit;
 }
 
-// ── Menú WP Admin ─────────────────────────────────────────────────────────────
 add_action('admin_menu', 'mdc_menu');
 
 function mdc_menu() {

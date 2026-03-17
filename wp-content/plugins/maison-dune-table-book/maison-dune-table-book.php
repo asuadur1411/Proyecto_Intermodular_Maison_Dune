@@ -11,7 +11,6 @@ define('MDR_API_NAME', 'AdminMaison');
 define('MDR_API_EMAIL', 'proyectomaison20@gmail.com');
 define('MDR_API_PASSWORD', 'admin123');
 
-// ── Obtener token de Laravel ──────────────────────────────────────────────────
 function mdr_get_token() {
     $response = wp_remote_post(MDR_API_URL . '/login', [
         'timeout' => 15,
@@ -37,7 +36,6 @@ function mdr_get_token() {
     return null;
 }
 
-// ── Procesar formulario → Laravel ─────────────────────────────────────────────
 add_action('admin_post_maison_reservation', 'mdr_save_reservation');
 add_action('admin_post_nopriv_maison_reservation', 'mdr_save_reservation');
 
@@ -80,7 +78,6 @@ function mdr_save_reservation() {
     exit;
 }
 
-// ── Menú WP Admin ─────────────────────────────────────────────────────────────
 add_action('admin_menu', 'mdr_menu');
 
 function mdr_menu() {
