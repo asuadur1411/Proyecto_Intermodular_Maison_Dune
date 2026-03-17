@@ -624,3 +624,5 @@
 [16-Mar-2026 15:47:42 UTC] PHP Warning:  Constant MDR_API_NAME already defined in C:\laragon\www\maison\wp-content\plugins\maison-dune-table-book\maison-dune-table-book.php on line 10
 [16-Mar-2026 15:47:43 UTC] PHP Warning:  Constant MDR_API_NAME already defined in C:\laragon\www\maison\wp-content\plugins\maison-dune-table-book\maison-dune-table-book.php on line 10
 [16-Mar-2026 15:47:56 UTC] PHP Warning:  Constant MDR_API_NAME already defined in C:\laragon\www\maison\wp-content\plugins\maison-dune-table-book\maison-dune-table-book.php on line 10
+[16-Mar-2026 15:51:35 UTC] PHP Warning:  Constant MDR_API_NAME already defined in C:\laragon\www\maison\wp-content\plugins\maison-dune-table-book\maison-dune-table-book.php on line 10
+[16-Mar-2026 15:51:55 UTC] PHP Warning:  Constant MDR_API_NAME already defined in C:\laragon\www\maison\wp-content\plugins\maison-dune-table-book\maison-dune-table-book.php on line 10
