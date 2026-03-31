@@ -36,8 +36,14 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ], 201);
     }
-
-    public function login(Request $request)
+    //Copia seguridad login sin cookies y cambios
+    /*
+    - Caso fallar solo quitar lo no comentado y poner este
+    - quitar el contenido de bootstrap/app.php
+    - quitar el contenido de .env
+    - quitar el contenido de auth-bridge.js
+    */
+    /*public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -58,5 +64,23 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Credenciales incorrectas. Revisa tu email o contraseña.'
         ], 401);
+    }*/
+    
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return response()->json([
+                'message' => '¡Login exitoso!',
+                'user' => Auth::user()
+            ]);
+        }
+
+        return response()->json(['message' => 'Credenciales incorrectas.'], 401);
     }
 }

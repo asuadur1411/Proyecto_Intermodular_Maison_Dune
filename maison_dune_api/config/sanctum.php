@@ -81,4 +81,6 @@ return [
         'validate_csrf_token' => Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
     ],
 
+    //PARTE DE LAS COOKIES
+    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', 'maison.test')),
 ];

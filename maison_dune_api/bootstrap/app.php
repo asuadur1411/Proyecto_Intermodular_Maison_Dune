@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         apiPrefix: 'api',
     )
+    //Control de las cookies
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->statefulApi();
+    })
     ->withMiddleware(function (Middleware $middleware): void {
         //
     })
