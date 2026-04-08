@@ -94,11 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 //COOKIES
-await fetch(maisonConfig.apiUrl + '/sanctum/csrf-cookie', {credentials: 'include'});
+await fetch(maisonConfig.apiUrl + "/sanctum/csrf-cookie", {
+  credentials: "include",
+});
 
-const response = await fetch(maisonConfig.apiUrl + '/login', {
-  method: 'POST',
-  credentials: 'include',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify(payload)
+const response = await fetch(maisonConfig.apiUrl + "/login", {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
 });

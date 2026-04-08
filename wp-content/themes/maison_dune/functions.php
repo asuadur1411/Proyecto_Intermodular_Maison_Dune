@@ -120,5 +120,26 @@ function maison_dune_cargar_puente_laravel()
 }
 add_action('wp_enqueue_scripts', 'maison_dune_cargar_puente_laravel');
 
+function maison_login_redirect($redirect_to, $request, $user)
+{
+    return home_url('/profile');
+}
+add_filter('login_redirect', 'maison_login_redirect', 10, 3);
+
+function maison_registration_redirect()
+{
+    return home_url('/profile');
+}
+add_filter('registration_redirect', 'maison_registration_redirect');
+
+function maison_protect_profile_page()
+{
+    if (is_page('profile') && !is_user_logged_in()) {
+        wp_redirect(home_url('/login'));
+        exit;
+    }
+}
+add_action('template_redirect', 'maison_protect_profile_page');
+
 
 
