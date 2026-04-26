@@ -2630,3 +2630,840 @@ header {
     }
   }
 }
+
+
+/*----------ESTILOS PARA LA PARTE DE EVENTOS----------*/
+
+.events-hero {
+  margin-top: 3rem;
+  padding-top: 85px;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    linear-gradient(rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0.72)),
+    url(assets/img/terrace.jpeg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.events-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(255, 207, 123, 0.12), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(99, 0, 0, 0.18), transparent 35%);
+  pointer-events: none;
+}
+
+.events-hero .events-hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(900px, 92%);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+  padding: 4rem 2rem;
+  border: 1px solid rgba(255, 207, 123, 0.18);
+  background: rgba(14, 13, 13, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.events-hero .events-hero-content h3 {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--beige-text);
+}
+
+.events-hero .events-hero-content h1 {
+  font-family: "Cormorant Garamond";
+  font-size: clamp(58px, 10vw, 110px);
+  font-weight: 300;
+  color: var(--light);
+  line-height: 0.95;
+}
+
+.events-hero .events-hero-content p {
+  max-width: 700px;
+  font-family: "Montserrat";
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.events-archive {
+  display: flex;
+  flex-flow: column;
+  gap: 3rem;
+  padding: 5rem 4rem;
+  background:
+    linear-gradient(rgba(19, 17, 15, 0.96), rgba(19, 17, 15, 0.96)),
+    url(assets/img/estampado-rooms.webp);
+  background-repeat: repeat;
+  background-size: 250px auto;
+  background-position: center;
+}
+
+.events-archive .events-archive-intro {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.events-archive .events-archive-intro h3 {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--beige-text);
+}
+
+.events-archive .events-archive-intro h1 {
+  font-family: "Cormorant Garamond";
+  font-size: clamp(38px, 6vw, 58px);
+  font-weight: 300;
+  color: var(--light);
+  line-height: 1;
+}
+
+.events-archive .events-archive-intro p {
+  max-width: 720px;
+  font-family: "Montserrat";
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.events-archive .events-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.events-archive .events-filters .filter-pill {
+  text-decoration: none;
+  padding: 0.9rem 1.3rem;
+  border: 1px solid rgba(255, 207, 123, 0.2);
+  color: var(--light);
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: 0.3s ease;
+}
+
+.events-archive .events-filters .filter-pill:hover {
+  background-color: rgba(255, 207, 123, 0.08);
+  border-color: var(--beige-text);
+  color: var(--beige-text);
+  transform: translateY(-2px);
+}
+
+.events-archive .events-filters .filter-pill.active {
+  background-color: var(--beige-text);
+  color: var(--grey);
+  border-color: var(--beige-text);
+}
+
+.events-archive .events-grid {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.events-archive .event-card {
+  display: flex;
+  flex-flow: column;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 207, 123, 0.12);
+  overflow: hidden;
+  position: relative;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.events-archive .event-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 207, 123, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.events-archive .event-card:hover .event-card-image img {
+  transform: scale(1.06);
+}
+
+.events-archive .event-card:hover .event-card-link {
+  color: var(--beige-text);
+}
+
+.events-archive .event-card .event-card-image-link {
+  display: block;
+  text-decoration: none;
+}
+
+.events-archive .event-card .event-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.events-archive .event-card .event-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.events-archive .event-card .event-card-image-placeholder {
+  background:
+    linear-gradient(rgba(255, 207, 123, 0.07), rgba(255, 207, 123, 0.02)),
+    var(--grey);
+}
+
+.events-archive .event-card .event-card-content {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  padding: 1.6rem;
+}
+
+.events-archive .event-card .event-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.events-archive .event-card .event-card-category {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(255, 207, 123, 0.2);
+  font-family: "Montserrat";
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--beige-text);
+  background-color: rgba(255, 207, 123, 0.05);
+}
+
+.events-archive .event-card h2 {
+  margin: 0;
+}
+
+.events-archive .event-card h2 a {
+  text-decoration: none;
+  color: var(--light);
+  font-family: "Cormorant Garamond";
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.05;
+  transition: color 0.3s ease;
+}
+
+.events-archive .event-card h2 a:hover {
+  color: var(--beige-text);
+}
+
+.events-archive .event-card p {
+  margin: 0;
+  font-family: "Montserrat";
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.events-archive .event-card .event-card-link {
+  width: fit-content;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--light);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255, 207, 123, 0.4);
+  transition: 0.3s ease;
+}
+
+.events-archive .no-events {
+  grid-column: 1 / -1;
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 207, 123, 0.14);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.events-archive .no-events h2 {
+  font-family: "Cormorant Garamond";
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--light);
+  margin-bottom: 0.8rem;
+}
+
+.events-archive .no-events p {
+  font-family: "Montserrat";
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+/*----------ESTILOS DE LOS EVENTOS----------*/
+
+.single-event-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.single-event-hero .single-event-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.single-event-hero .single-event-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+.single-event-hero .single-event-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.45) 45%, rgba(10, 10, 10, 0.45) 100%),
+    radial-gradient(circle at top right, rgba(255, 207, 123, 0.12), transparent 30%);
+}
+
+.single-event-hero .single-event-hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(1100px, 92%);
+  padding: 0 2rem 5rem;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  color: var(--light);
+}
+
+.single-event-hero .single-event-label {
+  width: fit-content;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(255, 207, 123, 0.3);
+  background-color: rgba(255, 207, 123, 0.06);
+  color: var(--beige-text);
+  font-family: "Montserrat";
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.single-event-hero h1 {
+  font-family: "Cormorant Garamond";
+  font-size: clamp(56px, 10vw, 110px);
+  font-weight: 300;
+  line-height: 0.95;
+  max-width: 900px;
+}
+
+.single-event-hero .single-event-subtitle {
+  max-width: 720px;
+  font-family: "Montserrat";
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.single-event-main {
+  padding: 5rem 4rem;
+  background:
+    linear-gradient(rgba(19, 17, 15, 0.98), rgba(19, 17, 15, 0.98)),
+    url(assets/img/estampado-rooms.webp);
+  background-repeat: repeat;
+  background-size: 250px auto;
+  background-position: center;
+}
+
+.single-event-main .single-event-wrapper {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  gap: 3rem;
+}
+
+.single-event-main .single-event-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 207, 123, 0.14);
+}
+
+.single-event-main .single-event-intro .single-event-heading {
+  display: flex;
+  flex-flow: column;
+  gap: 0.8rem;
+}
+
+.single-event-main .single-event-intro .single-event-heading h3 {
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--beige-text);
+}
+
+.single-event-main .single-event-intro .single-event-heading h2 {
+  font-family: "Cormorant Garamond";
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 300;
+  color: var(--light);
+  line-height: 1.05;
+}
+
+.single-event-main .single-event-intro .single-event-summary p {
+  font-family: "Montserrat";
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.single-event-main .single-event-content {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) 340px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.single-event-main .single-event-text {
+  display: flex;
+  flex-flow: column;
+  gap: 1.5rem;
+}
+
+.single-event-main .single-event-text p {
+  font-family: "Montserrat";
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.2rem;
+}
+
+.single-event-main .single-event-text h2,
+.single-event-main .single-event-text h3,
+.single-event-main .single-event-text h4 {
+  font-family: "Cormorant Garamond";
+  color: var(--light);
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 2rem 0 1rem;
+}
+
+.single-event-main .single-event-text h2 {
+  font-size: 42px;
+}
+
+.single-event-main .single-event-text h3 {
+  font-size: 32px;
+}
+
+.single-event-main .single-event-text h4 {
+  font-size: 26px;
+}
+
+.single-event-main .single-event-text ul,
+.single-event-main .single-event-text ol {
+  padding-left: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.single-event-main .single-event-text ul li,
+.single-event-main .single-event-text ol li {
+  font-family: "Montserrat";
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0.5rem;
+}
+
+.single-event-main .single-event-text strong {
+  color: var(--beige-text);
+  font-weight: 600;
+}
+
+.single-event-main .single-event-text a {
+  color: var(--beige-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 207, 123, 0.35);
+}
+
+.single-event-main .single-event-sidebar {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  position: sticky;
+  top: 110px;
+}
+
+.single-event-main .single-event-sidebar .event-side-card {
+  padding: 1.4rem;
+  border: 1px solid rgba(255, 207, 123, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-flow: column;
+  gap: 0.6rem;
+}
+
+.single-event-main .single-event-sidebar .event-side-card h3 {
+  font-family: "Montserrat";
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--beige-text);
+}
+
+.single-event-main .single-event-sidebar .event-side-card p {
+  font-family: "Cormorant Garamond";
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 300;
+  color: var(--light);
+}
+
+.single-event-main .single-event-sidebar .back-events-link {
+  width: fit-content;
+  text-decoration: none;
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--light);
+  border-bottom: 1px solid rgba(255, 207, 123, 0.35);
+  padding-bottom: 0.3rem;
+  margin-top: 0.8rem;
+  transition: 0.3s ease;
+}
+
+.single-event-main .single-event-sidebar .back-events-link:hover {
+  color: var(--beige-text);
+}
+
+/*----------ESTILOS EVENTO DESTACADO/PREMIUM----------*/
+
+.events-premium {
+  padding: 6rem 4rem;
+  background-color: #13110f;
+  color: var(--light);
+}
+
+.events-premium .events-premium-header {
+  width: min(850px, 100%);
+  margin: 0 auto 3.5rem;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+.events-premium .events-premium-header .section-kicker {
+  font-family: "Montserrat";
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--beige-text);
+}
+
+.events-premium .events-premium-header h2 {
+  font-family: "Cormorant Garamond";
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--light);
+}
+
+.events-premium .events-premium-header p {
+  font-family: "Montserrat";
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.72);
+  margin: 0 auto;
+  max-width: 720px;
+}
+
+.events-premium .events-premium-grid {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.events-premium .premium-card {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 207, 123, 0.12);
+  display: flex;
+  flex-flow: column;
+}
+
+.events-premium .premium-card .premium-card-image {
+  display: block;
+  height: 300px;
+  overflow: hidden;
+}
+
+.events-premium .premium-card .premium-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.events-premium .premium-card:hover .premium-card-image img {
+  transform: scale(1.05);
+}
+
+.events-premium .premium-card .premium-card-content {
+  padding: 1.8rem;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.events-premium .premium-card .premium-card-tag {
+  font-family: "Montserrat";
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--beige-text);
+}
+
+.events-premium .premium-card h3 {
+  font-family: "Cormorant Garamond";
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.05;
+}
+
+.events-premium .premium-card h3 a {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.events-premium .premium-card .premium-card-excerpt {
+  font-family: "Montserrat";
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.72);
+}
+
+.events-premium .premium-card .premium-card-link {
+  margin-top: auto;
+  width: fit-content;
+  font-family: "Montserrat";
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--beige-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 207, 123, 0.3);
+  padding-bottom: 0.25rem;
+}
+
+.events-premium .premium-card-main {
+  grid-row: span 1;
+  min-height: 520px;
+}
+
+.events-premium .premium-card-main .premium-card-image {
+  height: 100%;
+  min-height: 520px;
+}
+
+.events-premium .premium-card-main .premium-card-content {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.18));
+  z-index: 2;
+}
+
+.events-premium .premium-card-main h3 {
+  font-size: clamp(44px, 4vw, 64px);
+}
+
+.events-premium .premium-card-main .premium-card-excerpt {
+  max-width: 580px;
+}
+
+/* ----------------------------- RESPONSIVE EVENTS ----------------------------- */
+
+@media (max-width: 1100px) {
+  .events-archive .events-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .events-premium {
+    padding: 5rem 2rem;
+  }
+
+  .events-premium .events-premium-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-premium .premium-card,
+  .events-premium .premium-card-main {
+    min-height: auto;
+  }
+
+  .events-premium .premium-card-main .premium-card-image {
+    min-height: 380px;
+    height: 380px;
+  }
+
+  .events-premium .premium-card-main .premium-card-content {
+    position: absolute;
+  }
+}
+
+@media (max-width: 992px) {
+  .single-event-main .single-event-intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .single-event-main .single-event-content {
+    grid-template-columns: 1fr;
+  }
+
+  .single-event-main .single-event-sidebar {
+    position: static;
+    top: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-hero {
+    min-height: 65vh;
+  }
+
+  .events-hero .events-hero-content {
+    padding: 3rem 1.2rem;
+  }
+
+  .events-hero .events-hero-content h1 {
+    font-size: clamp(46px, 13vw, 72px);
+  }
+
+  .events-hero .events-hero-content p {
+    font-size: 14px;
+  }
+
+  .events-archive {
+    padding: 4rem 1.2rem;
+  }
+
+  .events-archive .events-filters {
+    justify-content: flex-start;
+  }
+
+  .events-archive .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-archive .event-card .event-card-image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .events-archive .event-card h2 a {
+    font-size: 30px;
+  }
+
+  .events-archive .no-events h2 {
+    font-size: 34px;
+  }
+
+  .single-event-hero {
+    min-height: 78vh;
+  }
+
+  .single-event-hero .single-event-hero-content {
+    padding: 0 1.2rem 3.5rem;
+  }
+
+  .single-event-hero h1 {
+    font-size: clamp(42px, 12vw, 70px);
+  }
+
+  .single-event-hero .single-event-subtitle {
+    font-size: 14px;
+  }
+
+  .single-event-main {
+    padding: 4rem 1.2rem;
+  }
+
+  .single-event-main .single-event-text p,
+  .single-event-main .single-event-text ul li,
+  .single-event-main .single-event-text ol li {
+    font-size: 14px;
+  }
+
+  .single-event-main .single-event-text h2 {
+    font-size: 34px;
+  }
+
+  .single-event-main .single-event-text h3 {
+    font-size: 28px;
+  }
+
+  .single-event-main .single-event-text h4 {
+    font-size: 24px;
+  }
+
+  .single-event-main .single-event-sidebar .event-side-card p {
+    font-size: 24px;
+  }
+}
