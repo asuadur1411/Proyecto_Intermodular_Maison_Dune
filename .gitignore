@@ -1,0 +1,63 @@
+# ====== Secrets ======
+# NOTE: Para la entrega académica del TFG se incluyen wp-config.php y .env
+# para que el tribunal pueda revisar la configuración (SMTP, DB, Sanctum, etc.).
+# En un entorno de producción real estos archivos NUNCA deben subirse al repo.
+# wp-config.php
+# maison_dune_api/.env
+
+# ====== Dependencies ======
+maison_dune_api/vendor/
+maison_dune_api/node_modules/
+**/node_modules/
+
+# ====== Build artifacts ======
+maison_dune_api/public/build/
+maison_dune_api/public/hot
+maison_dune_api/public/storage
+maison_dune_api/bootstrap/cache/*.php
+
+# ====== Laravel runtime ======
+maison_dune_api/storage/*.key
+maison_dune_api/storage/logs/*
+!maison_dune_api/storage/logs/.gitkeep
+maison_dune_api/storage/framework/cache/data/*
+maison_dune_api/storage/framework/sessions/*
+maison_dune_api/storage/framework/views/*
+maison_dune_api/storage/framework/testing/*
+!maison_dune_api/storage/framework/cache/data/.gitkeep
+!maison_dune_api/storage/framework/sessions/.gitkeep
+!maison_dune_api/storage/framework/views/.gitkeep
+
+# ====== WP runtime / user content ======
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/debug.log
+wp-content/db.php
+wp-content/object-cache.php
+
+# ====== IDE / OS ======
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ====== Logs ======
+*.log
+error_log
+debug.log
+
+# ====== Archives / backups ======
+*.tar.gz
+*.zip
+*.bak
+*.old
+
+# ====== Misc ======
+.phpunit.result.cache
+.phpunit.cache
+auth.json
+.npmrc
