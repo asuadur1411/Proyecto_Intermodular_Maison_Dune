@@ -4,8 +4,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const track = document.getElementById('sticky-carousel-track');
     
     if(!wrapper || !stickyContainer || !track) return;
-    
+
+    // Mobile / tablet: do not enable horizontal sticky scroll, the slides
+    // stack vertically via CSS. Reset any previously applied inline styles.
+    const mql = window.matchMedia('(max-width: 1024px)');
+    function resetMobileStyles() {
+        stickyContainer.style.position = '';
+        stickyContainer.style.top = '';
+        track.style.transform = '';
+    }
+    if (mql.matches) resetMobileStyles();
+    mql.addEventListener('change', function (e) {
+        if (e.matches) resetMobileStyles();
+    });
+
     window.addEventListener('scroll', () => {
+        if (mql.matches) return;
         const rect = wrapper.getBoundingClientRect();
         const wrapperTop = rect.top;
         const wrapperHeight = rect.height;
@@ -35,3 +49,4 @@ document.addEventListener("DOMContentLoaded", function() {
     
     window.dispatchEvent(new Event('scroll'));
 });
+
